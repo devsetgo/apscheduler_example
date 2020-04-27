@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import statistics
 from random import randint
 
