@@ -23,10 +23,10 @@ async def math_page(request):
     return JSONResponse(stats)
 
 
-async def websocket_endpoint(websocket):
-    await websocket.accept()
-    await websocket.send_text("Hello, websocket!")
-    await websocket.close()
+# async def websocket_endpoint(websocket):
+#     await websocket.accept()
+#     await websocket.send_text("Hello, websocket!")
+#     await websocket.close()
 
 
 def startup():
@@ -45,7 +45,7 @@ def shutdown():
 routes = [
     Route("/", homepage),
     Route("/math", math_page),
-    WebSocketRoute("/ws", websocket_endpoint),
+    # WebSocketRoute("/ws", websocket_endpoint),
     # Mount("/static", StaticFiles(directory="static")),
 ]
 
