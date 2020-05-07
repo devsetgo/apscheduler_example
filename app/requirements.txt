@@ -1,0 +1,17 @@
+# TODO #2:
+
+starlette[full]
+apscheduler
+uvicorn
+black
+databases[sqlite]
+autoflake
+autopep8
+flake8
+pre-commit
+pylint
+pytest
+requests
+coverage
+coverage-badge
+pytest-cov
