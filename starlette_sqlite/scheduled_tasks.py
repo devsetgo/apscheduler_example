@@ -28,26 +28,30 @@ def start_jobs():
         id="simple cron job 1",  # must be a unique name
         func=run_stats,
         trigger="cron",
-        second=0,
-        max_instances=3,
-        replace_existing=True,  # prevents issue when app restarts
+        minute="*/15", # every fifteen minutes cron style
+        second=0, # cron on 0 second
+        max_instances=1, # number of concurrent instances
+        replace_existing=True, # remove schedule if existing
+        jitter=30, # variation of +/- 30 seconds (*:14:30 - *:15:30)
+        misfire_grace_time=300, # If not run, what is the variation to rerun
     )
     scheduler.add_job(
         id="simple cron job 2",  # must be a unique name
         func=run_stats,
         trigger="cron",
-        second=0,
-        max_instances=3,
-        replace_existing=True,  # prevents issue when app restarts
+        second=0, # cron on 0 second
+        replace_existing=True, # remove schedule if existing
+        
     )
     # example of running interval job at every 10 seconds
     scheduler.add_job(
         id="simple interval",  # must be a unique name
         func=run_addition,
         trigger="interval",
-        seconds=10,
-        max_instances=3,
-        replace_existing=True,  # prevents issue when app restarts
+        minutes=5, # every five mintues
+        seconds=20, # and 20 seconds
+        replace_existing=True, # remove schedule if existing
+        jitter=30, # variation in seconds
     )
 
     # example of running a job on a specific date
@@ -64,8 +68,9 @@ def start_jobs():
 
 def shut_down_schedule():
 
+    # if you want to remove a specific job
     scheduler.remove_job("simple cron job 1")
-    scheduler.remove_job("simple cron job 2")
-    scheduler.remove_job("simple interval")
-    scheduler.remove_job("happy fourth")
+    # if you want to remove all jobs
+    scheduler.remove_all_jobs()    
+    # shut down scheduler on closure
     scheduler.shutdown()
