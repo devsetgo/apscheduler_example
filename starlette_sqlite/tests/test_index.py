@@ -17,7 +17,7 @@ class Test(unittest.TestCase):
         assert response.status_code == 200
 
     def test_math_page(self):
-    
+
         url = f"/math"
         client = TestClient(app)
         response = client.get(url)
