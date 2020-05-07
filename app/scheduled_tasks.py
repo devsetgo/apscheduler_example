@@ -9,7 +9,7 @@ from pytz import utc
 from math_func import happy_fourth, run_addition, run_stats
 
 jobstores = {
-    "default": SQLAlchemyJobStore(url="sqlite:///app.db")
+    "default": SQLAlchemyJobStore(url="sqlite:///sqlite_db/app.db")
 }  # TODO #1: define a better locaton for the default db.
 
 executors = {"default": AsyncIOExecutor()}
